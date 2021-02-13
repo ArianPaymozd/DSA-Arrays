@@ -142,5 +142,69 @@ function merge(arr1, arr2) {
 // merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10])
 
 function removeChar(string, chars) {
+    let stringArr = ''
     
+    for (let i = 0; i < string.length; i++) {
+        let checks = 0
+        let requiredChecks = chars.length
+
+        for (let j = 0; j < chars.length; j++) {
+            
+            if (chars[j].toLowerCase() !== string[i].toLowerCase()) {
+                checks++
+                if (checks === requiredChecks)
+                stringArr += string[i]
+            }
+        }
+    }
+    console.log(stringArr)
 }
+
+// removeChar('Battle of the Vowels: Hawaii vs. Grozny', 'aeiouyb')
+
+function products(arr) {
+    let result = []
+
+    for (let i = 0; i < arr.length; i++) {
+        let factors = []
+        let product = 0
+
+        for (let j = 0; j < arr.length; j++) {
+            if (i !== j) {
+                factors.push(arr[j])
+            }
+        }
+        for(let x = 0; x < factors.length; x++) {
+            if (product === 0) {
+                product = factors[x]
+            } else {
+                product = product * factors[x]
+            }
+        }
+        result.push(product)
+    }
+    console.log(result)
+}
+
+// products([1, 3, 9, 4])
+
+function twoD(arr) {
+    let indexes = []
+    let subIndexes = []
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] === 0 && !indexes.includes(i) && !subIndexes.includes(j)) {
+                indexes.push(i)
+                subIndexes.push(j)
+            }
+        }
+    }
+
+    console.log(indexes, subIndexes)
+}
+
+// twoD([[1,0,1,1,0],
+//     [0,1,1,1,0],
+//     [1,1,1,1,1],
+//     [1,0,1,1,1],
+//     [1,1,1,1,1]])
