@@ -193,14 +193,27 @@ function twoD(arr) {
     let subIndexes = []
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].length; j++) {
-            if (arr[i][j] === 0 && !indexes.includes(i) && !subIndexes.includes(j)) {
+            if (arr[i][j] === 0) {
                 indexes.push(i)
                 subIndexes.push(j)
             }
         }
     }
+    for (let i = 0; i < arr.length; i++) {
+        if (indexes.includes(i)) {
+            for (let j = 0; j < arr[i].length; j++) {
+                arr[i].splice(j, 1, 0)
+            }
+        } else {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (subIndexes.includes(j)) {
+                    arr[i].splice(j, 1, 0)
+                }
+            }
+        }
+    }
 
-    console.log(indexes, subIndexes)
+    console.log(arr)
 }
 
 // twoD([[1,0,1,1,0],
@@ -208,3 +221,17 @@ function twoD(arr) {
 //     [1,1,1,1,1],
 //     [1,0,1,1,1],
 //     [1,1,1,1,1]])
+
+function stringRotation(str1, str2) {
+    let result = true
+    for (let i = 0; i < str1.length; i++) {
+        for (let j = 0; j < str2.length; j++) {
+            if (!str1.includes(str2[j] + str2[j + 1]) && str1[0] !== str2[j + 1] && j !== str2.length - 1) {
+                result = false
+            }
+        }
+    }
+    console.log(result)
+}
+
+// stringRotation('amazon', 'azonma')
